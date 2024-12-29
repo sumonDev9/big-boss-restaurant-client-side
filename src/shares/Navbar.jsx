@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const navMenu = <>
-    <li><Link to='/'>Home</Link></li>
-    <li><Link to='/menu'>Our Menu</Link></li>
-    <li><Link>Our Shop</Link></li>
-    <li><Link>DASHBOARD</Link></li>
-    <li><Link>CONTACT us</Link></li>
-    </>
+  const navMenu = <>
+  <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-yellow-800' : ''}>Home</NavLink></li>
+  <li><NavLink to="/menu" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Our Menu</NavLink></li>
+  <li><NavLink to="/shop" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Our Shop</NavLink></li>
+  <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>DASHBOARD</NavLink></li>
+  <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>CONTACT us</NavLink></li>
+</>;
     return (
-        <div className="navbar w-11/12 mx-auto bg-base-100">
+    <div className='fixed top-0 left-0 w-full bg-opacity-70 bg-black z-50'>
+          <div className="navbar  w-11/12 mx-auto text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,6 +46,7 @@ const Navbar = () => {
           <a className="btn">Login</a>
         </div>
       </div>
+    </div>
     );
 };
 
