@@ -26,6 +26,10 @@ const Popular = () => {
                 menu.map(item => <MenuCard key={item._id} item={item}></MenuCard>)
             }
            </div>
+<div className='flex justify-center mt-5'>
+<button className='btn btn-outline  border-0 mt-4 border-b-4'>View full Menu</button>
+
+</div>
         </div>
     );
 };
