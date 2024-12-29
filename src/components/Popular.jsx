@@ -3,7 +3,7 @@ import SectionHeading from './sectionHeading';
 import MenuCard from '../shares/MenuCard';
 
 const Popular = () => {
-    const [menu, setMenu] = useState();
+    const [menu, setMenu] = useState([]);
 
     useEffect(() => {
         fetch('menu.json')

@@ -1,24 +1,57 @@
 import React from 'react';
-
+import img1 from '../../src/assets/home/featured.jpg'
+import SectionHeading from './sectionHeading';
 const Featured = () => {
     return (
-        <div
-  className="hero min-h-screen"
-  style={{
-    backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-  }}>
-  <div className="hero-overlay bg-opacity-60"></div>
-  <div className="hero-content text-neutral-content text-center">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-      <p className="mb-5">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
-      </p>
-      <button className="btn btn-primary">Get Started</button>
+        // <div  style={{
+        //     backgroundImage: "url(https://i.ibb.co/47HBk1d/featured.jpg)",
+        //   }}
+        //   className='my-10'
+          
+        //   >
+             
+        //    <SectionHeading
+        //         subHeading={"From Our Menu"}
+        //         heading={"Popular Items"}
+        //     >
+        //    </SectionHeading>
+        //    <div className='md:flex mt-10 justify-center items-center gap-8 w-11/12 mx-auto'>
+        //     <div>
+        //         <img className='mb-10' src={img1} alt="" />
+        //     </div>
+        //     <div className='text-white'>
+        //         <p>Dec 31, 2024</p>
+        //         <p>Where can i get some?</p>
+        //         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, consequatur laborum perferendis quia aspernatur quidem modi eveniet, nesciunt veniam similique eius voluptates asperiores est autem.</p>
+        //     </div>
+        //    </div>
+        // </div>
+
+        <div 
+        style={{
+            backgroundImage: "url(https://i.ibb.co/47HBk1d/featured.jpg)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)", 
+            backgroundBlendMode: "overlay", }}
+        className='p-10 my-10 bg-cover bg-fixed bg-center'
+    >
+       <SectionHeading
+            className='mt-10'
+            subHeading={"From Our Menu"}
+            heading={"Popular Items"}
+        >
+       </SectionHeading>
+       <div className='md:flex mt-10 justify-center items-center gap-8 w-11/12 mx-auto'>
+        <div>
+            <img className='mb-10' src={img1} alt="" />
+        </div>
+        <div className='text-white'>
+            <p className='text-2xl font-bold'>Dec 31, 2024</p>
+            <p className='text-lg font-bold'>Where can i get some?</p>
+            <p className='text-xl font-semibold'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, consequatur laborum perferendis quia aspernatur quidem modi eveniet, nesciunt veniam similique eius voluptates asperiores est autem.</p>
+            <button className='btn btn-outline border-0 mt-4 text-white border-b-4'>Read More</button>
+        </div>
+       </div>
     </div>
-  </div>
-</div>
     );
 };
 
