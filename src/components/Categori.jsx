@@ -7,17 +7,24 @@ import img2 from '../../src/assets/home/slide2.jpg'
 import img3 from '../../src/assets/home/slide3.jpg'
 import img4 from '../../src/assets/home/slide4.jpg'
 import img5 from '../../src/assets/home/slide5.jpg'
+import SectionHeading from './sectionHeading';
 const Categori = () => {
     return (
+     <section>
+        <SectionHeading
+         subHeading={"From 11.00am to 10.00pm"}
+         heading={"ORDER ONLNE"}
+        >
+       
+        </SectionHeading>
         <Swiper
-
         slidesPerView={4}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper w-11/12 mx-auto mb-10"
+        className="mySwiper w-11/12 mx-auto mt-14 mb-10"
       >
         <SwiperSlide>
             <img src={img1} alt="" />
@@ -40,6 +47,7 @@ const Categori = () => {
              <h2 className='text-white text-center font-extrabold text-3xl -mt-20'>Salads</h2>
         </SwiperSlide>
     </Swiper>
+    </section>
     );
 };
 
