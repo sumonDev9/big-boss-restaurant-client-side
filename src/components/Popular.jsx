@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
 import SectionHeading from './sectionHeading';
 import MenuCard from '../shares/MenuCard';
+import useMenu from '../hooks/useMenu';
 
 const Popular = () => {
-    const [menu, setMenu] = useState([]);
+ 
+    // custom hook diye kora
+    const [menu] = useMenu();
+    const popular = menu.filter(item => item.category === 'popular')
 
-    useEffect(() => {
-        fetch('menu.json')
-        .then(res => res.json())
-        .then(data => {
-            const popularItem = data.filter(item => item.category === 'popular');
-            setMenu(popularItem)
-        })
-    },[]);
+    // ata emni proceess 
+
+    // const [menu, setMenu] = useState([]);
+    // useEffect(() => {
+    //     fetch('menu.json')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         const popularItem = data.filter(item => item.category === 'popular');
+    //         setMenu(popularItem)
+    //     })
+    // },[]);
+
+
 
     return (
         <div className='w-11/12 mx-auto mb-10'>
@@ -23,7 +31,7 @@ const Popular = () => {
            </SectionHeading>
            <div className='grid grid-cols-1 mt-10 md:grid-cols-2 gap-8'>
             {
-                menu.map(item => <MenuCard key={item._id} item={item}></MenuCard>)
+                popular.map(item => <MenuCard key={item._id} item={item}></MenuCard>)
             }
            </div>
 <div className='flex justify-center mt-5'>
