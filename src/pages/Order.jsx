@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet-async';
 const Order = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
     const {category} = useParams();
+    console.log(category)
     const initialIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initialIndex);
     const [menu] = useMenu();
@@ -25,7 +26,7 @@ const Order = () => {
 
         <div>
             <Helmet>
-             <title>Big Boss | order</title>
+             <title>Big Boss | order Food</title>
             </Helmet>
             <Cover img={orderCover} title={'Order Food'}></Cover>
             <div className='w-11/12 mx-auto mt-10'>

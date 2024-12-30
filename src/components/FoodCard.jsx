@@ -10,11 +10,11 @@ const FoodCard = ({item}) => {
       alt={name}/>
       <p className='absolute mr-5 mt-5 top-0 right-0 bg-slate-900 text-white px-5 py-2'>${price}</p>
   </figure>
-  <div className="card-body">
+  <div className="card-body flex flex-col items-center">
     <h2 className="card-title">{name}</h2>
     <p>{recipe}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Add to cart</button>
+      <button className="btn btn-outline bg-slate-200  border-0 mt-4 border-b-4">Add to cart</button>
     </div>
   </div>
 </div>
