@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuCard from '../shares/MenuCard';
 import Cover from '../shares/Cover';
+import { Link } from 'react-router-dom';
 
 const MenuCategory = ({items, title, img}) => {
     return (
@@ -11,6 +12,11 @@ const MenuCategory = ({items, title, img}) => {
                 items.map(item => <MenuCard key={item._id} item={item}></MenuCard>)
             }
            </div>
+            <div className='flex justify-center mt-5'>
+                <Link to='/order'>
+                <button className='btn btn-outline  border-0 mt-4 border-b-4'>ORDER YOUR FAVOURITE FOOD</button>
+                </Link>
+            </div>
         </div>
     );
 };

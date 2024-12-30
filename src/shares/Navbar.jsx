@@ -6,7 +6,7 @@ const Navbar = () => {
   const navMenu = <>
   <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-yellow-800' : ''}>Home</NavLink></li>
   <li><NavLink to="/menu" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Our Menu</NavLink></li>
-  <li><NavLink to="/shop" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Our Shop</NavLink></li>
+  <li><NavLink to="/order" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
   <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>DASHBOARD</NavLink></li>
   <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>CONTACT us</NavLink></li>
 </>;
