@@ -9,6 +9,7 @@ const Navbar = () => {
   <li><NavLink to="/order/salad" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
   <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>DASHBOARD</NavLink></li>
   <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>CONTACT us</NavLink></li>
+  <li><NavLink to="/login" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Login</NavLink></li>
 </>;
     return (
     <div className='fixed top-0 left-0 w-full bg-opacity-70 bg-black z-50'>
