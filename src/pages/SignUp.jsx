@@ -2,21 +2,22 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../providers/Authprovider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
 
     const {register, handleSubmit, watch, formState: { errors }} = useForm();
     const {createUser} = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const onSubmit = data => {
         createUser(data.email, data.password)
         .then(result => {
             const loggerUser = result.user;
             console.log(loggerUser);
+            navigate('/')
         })
-     }
+    }
 
     return (
    <>
