@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../providers/Authprovider';
 
 const Navbar = () => {
+ const {user, logOut} = useContext(AuthContext);
 
   const navMenu = <>
   <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-yellow-800' : ''}>Home</NavLink></li>
@@ -9,7 +11,13 @@ const Navbar = () => {
   <li><NavLink to="/order/salad" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
   <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>DASHBOARD</NavLink></li>
   <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>CONTACT us</NavLink></li>
-  <li><NavLink to="/login" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Login</NavLink></li>
+{
+  user ? <>
+<button onClick={logOut} className="btn btn-ghost">Log Out</button>
+  </> : <>
+    <li><NavLink to="/login" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Login</NavLink></li>
+  </>
+}
 </>;
     return (
     <div className='fixed top-0 left-0 w-full bg-opacity-70 bg-black z-50'>
