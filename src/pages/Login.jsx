@@ -11,6 +11,10 @@ const Login = () => {
   const {user, signInUser} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  console.log('state in the location login page', location.state)
+
+  const from = location.state?.from?.pathname || '/';
+
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -43,7 +47,7 @@ const Login = () => {
               `
             }
           });
-          navigate(location.state ? location.state : "/");
+          navigate(from, { replace: true });
          })
     }
 
