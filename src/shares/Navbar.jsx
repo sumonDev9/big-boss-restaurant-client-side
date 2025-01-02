@@ -13,7 +13,7 @@ const Navbar = () => {
   <li><NavLink to="/order/salad" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
   <li><NavLink to="/secret" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Secret</NavLink></li>
     <li>
-     <Link className='/'>
+     <Link to='/dashboard/cart'>
      <button className="btn">
       <FaShoppingCart />
         <div className="badge badge-secondary">+{cart.length}</div>
