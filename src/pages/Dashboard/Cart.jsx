@@ -1,12 +1,40 @@
 import React from 'react';
 import useCarts from '../../hooks/useCarts';
 import { MdDeleteOutline } from 'react-icons/md';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Cart = () => {
-    const [cart] = useCarts();
+    const [cart, refetch] = useCarts();
     const totalprice = cart.reduce((total, item) => total + item.price, 0)
+    const axiosSecure = useAxiosSecure();
 
-   
+    const handleDelete = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            
+            axiosSecure.delete(`/carts/${id}`)
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your order has been deleted.",
+                        icon: "success"
+                    });
+                }
+            })
+            }
+          });
+    }
     return (
         <div className='p-5 bg-white'>
             <div className='flex justify-between  items-center'>
@@ -42,7 +70,7 @@ const Cart = () => {
                                 </td>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
-                                <td><MdDeleteOutline onClick={()=> handleDelete(item._id)} className='text-white bg-red-700 p-1 rounded-md text-4xl' /></td>
+                                <td><MdDeleteOutline onClick={()=> handleDelete(item._id)} className='text-white bg-red-700 p-1 cursor-pointer rounded-md text-4xl' /></td>
                             </tr>)
                           }
                             
