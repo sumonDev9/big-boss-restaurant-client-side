@@ -3,12 +3,15 @@ import { MdOutlineMenuBook } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useCarts from "../hooks/useCarts";
 import { TbBrandBooking } from "react-icons/tb";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
     const [cart] = useCarts();
 
     // TODO:get isAdmin value form the database
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+
+
 
     return (
         <div className="flex">
