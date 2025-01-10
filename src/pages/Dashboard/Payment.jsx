@@ -12,7 +12,7 @@ const Payment = () => {
             <SectionHeading heading="Payment" subHeading='Please pay to eat'></SectionHeading>
             <div>
                 <Elements stripe={stripePromise}>
-
+                    
                 </Elements>
             </div>
         </div>
