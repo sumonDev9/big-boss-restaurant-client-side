@@ -16,6 +16,18 @@ const CheckOutForm = () => {
         if (card == null) {
           return;
         }
+
+        // Use your card Element with other Stripe.js APIs
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: 'card',
+      card,
+    });
+
+    if (error) {
+      console.log('[error]', error);
+    } else {
+      console.log('[PaymentMethod]', paymentMethod);
+    }
         
     }  
 
@@ -28,6 +40,7 @@ const CheckOutForm = () => {
             base: {
               fontSize: '16px',
               color: '#424770',
+              
               '::placeholder': {
                 color: '#aab7c4',
               },
@@ -38,7 +51,7 @@ const CheckOutForm = () => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe}>
+      <button className="btn btn-primary" type="submit" disabled={!stripe}>
         Pay
       </button>
    </form>
