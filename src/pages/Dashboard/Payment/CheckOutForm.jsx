@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCarts from "../../../hooks/useCarts";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckOutForm = () => {
     const [error, setError] = useState('');
@@ -12,16 +13,18 @@ const CheckOutForm = () => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
-    const [cart] = useCarts();
+    const [cart, refetch] = useCarts();
     const totalprice = cart.reduce((total, item) => total + item.price, 0)
 
 
     useEffect(()=> {
-      axiosSecure.post('/create-payment-intent', {price: totalprice})
-      .then(res => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret)
-      })
+        if(totalprice){
+          axiosSecure.post('/create-payment-intent', {price: totalprice})
+          .then(res => {
+            console.log(res.data.clientSecret);
+            setClientSecret(res.data.clientSecret)
+          })
+        }
     }, [])
     const handleSubmit = async(event) =>{
         event.preventDefault()
@@ -75,10 +78,24 @@ const CheckOutForm = () => {
         const payment = {
           email: user.email,
           price: totalprice,
+          transactionId: paymentIntent.id,
           date: new Date(), // utc date convert, use moment js o
-          cartId: cart.map(item => item._id),
-          menuitemId: cart.map(item => item.menuId),
+          cartIds: cart.map(item => item._id),
+          menuitemIds: cart.map(item => item.menuId),
           status: 'send pending'
+        }
+
+        const res = await axiosSecure.post('/payments', payment);
+        // console.log('payment saved', res.data);
+        refetch();
+        if(res.data.paymentResult.insertedId){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Thank you or the taka paisa",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       }
     }
