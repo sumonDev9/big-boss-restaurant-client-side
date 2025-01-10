@@ -2,13 +2,16 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCarts from "../../../hooks/useCarts";
+import useAuth from "../../../hooks/useAuth";
 
 const CheckOutForm = () => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [transactionId, setTransactionId] = useState('');
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
     const [cart] = useCarts();
     const totalprice = cart.reduce((total, item) => total + item.price, 0)
 
@@ -47,6 +50,39 @@ const CheckOutForm = () => {
       setError('')
     }
         
+    // confirm payment
+    const { paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+      payment_method:{
+        card: card,
+        billing_details: {
+          email: user?.email || 'anonymous',
+          name: user?.displayName || 'anonymous'
+        }
+      }
+    })
+
+    if (confirmError) {
+      console.log('confirm error');
+      // setError(error.message);
+    } else {
+      console.log('Payment intent', paymentIntent);
+      // setError('')
+      if(paymentIntent.status === 'succeeded'){
+        console.log('transaction id', paymentIntent.id)
+        setTransactionId(paymentIntent.id);
+
+        // now save the payment in the database
+        const payment = {
+          email: user.email,
+          price: totalprice,
+          date: new Date(), // utc date convert, use moment js o
+          cartId: cart.map(item => item._id),
+          menuitemId: cart.map(item => item.menuId),
+          status: 'send pending'
+        }
+      }
+    }
+
     }  
 
     return (
@@ -73,6 +109,7 @@ const CheckOutForm = () => {
         Pay
       </button>
       <p className="text-red-500">{error}</p>
+      {transactionId && <p>Your transaction id: {transactionId}</p>}
    </form>
     );
 };
