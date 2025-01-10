@@ -3,6 +3,7 @@ import useCarts from '../../hooks/useCarts';
 import { MdDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = useCarts();
@@ -40,7 +41,12 @@ const Cart = () => {
             <div className='flex justify-between  items-center'>
                 <h2 className='text-[#151515] text-3xl font-bold'>Total orders: {cart.length}</h2>
                 <h2 className='text-[#151515] text-3xl font-bold'>total price: ${totalprice}</h2>
-                <button className='btn bg-[#D1A054] text-white'>Pay</button>
+                {cart.length ?
+                    <Link to='/dashboard/payment'>
+                        <button className='btn bg-[#D1A054] text-white'>Pay</button>
+                    </Link> :
+                    <button disabled className='btn bg-[#D1A054] text-white'>Pay</button>
+                }
             </div>
             <div>
                <div className="overflow-x-auto  mt-5">
