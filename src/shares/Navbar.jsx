@@ -3,15 +3,25 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/Authprovider';
 import { FaShoppingCart } from 'react-icons/fa';
 import useCarts from '../hooks/useCarts';
+import useAdmin from '../hooks/useAdmin';
 
 const Navbar = () => {
  const {user, logOut} = useContext(AuthContext);
+ const [isAdmin] = useAdmin();
  const [cart] = useCarts();
   const navMenu = <>
   <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-yellow-800' : ''}>Home</NavLink></li>
   <li><NavLink to="/menu" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Our Menu</NavLink></li>
   <li><NavLink to="/order/salad" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
-  <li><NavLink to="/secret" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Secret</NavLink></li>
+
+{
+    user && isAdmin && <li><NavLink to="//dashboard/adminHome" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Dashboard</NavLink></li>
+}
+
+{
+    user && !isAdmin && <li><NavLink to="/dashboard/userHome" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Dashboard</NavLink></li>
+}
+
     <li>
      <Link to='/dashboard/cart'>
      <button className="btn">
