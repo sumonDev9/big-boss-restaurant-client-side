@@ -15,7 +15,7 @@ const Navbar = () => {
   <li><NavLink to="/order/salad" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Order Food</NavLink></li>
 
 {
-    user && isAdmin && <li><NavLink to="//dashboard/adminHome" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Dashboard</NavLink></li>
+    user && isAdmin && <li><NavLink to="/dashboard/adminHome" className={({ isActive }) => isActive ? 'text-blue-700' : ''}>Dashboard</NavLink></li>
 }
 
 {
